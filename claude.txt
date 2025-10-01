@@ -1,0 +1,519 @@
+男性
+2011年3月22日生
+ADHD,ASDと診断されました
+パソコンが大好きで、学校（板橋区教育委員会）から支給されているNECのChromebookのみを非常に使い込んでいます
+学校のChromebookのフィルタリングに悩まされています。フィルタリングはChromeの拡張機能のInterCLASS® Filtering Service(Type B (なにこれ...?))です。
+高等学校に入学したら、すぐにバイトを始めて理想のWindowsノートPCを購入したいと考えています
+現在HTMLとCSSが少し（基本的なウェブページのコードは書けるが、より良質な構成やデザイン、仕組みなどには時間がかかる）とJavaScriptがちょびっとだけ（なんとなく書き方はわかるが、実用的に使えるほどの知識はない）書けます
+志村第二中学校を在校中
+→都立新宿山吹高等学校の情報科を志望
+→東京科学大学（旧東京工業大学）の情報理工学院または工学院を志望
+→任天堂を志望
+現在制作しているウェブアプリについて
+・AppHubというアプリ名
+・同じ学校の仲間同士でやり取りをすることをメインとした様々な機能が用意されたアプリ
+・リアルタイムチャット、音声（ビデオ）通話、画面共有、ファイルやリンク共有、Eaglercraftサーバー（Replitを利用）の遠隔操作 など
+・Web版VSCode（vscode.dev）を使用してコードの編集
+・HTML、CSS、JavaScriptで書いています
+・ローカルのfile:///からプレビュー、動作確認
+・cloudflare pagesで公開、デプロイ（追記：拡張機能のアップデートにより、ホスティングサービスによるホスティングページがすべてブロックされました。httpsホスティングをするすべがなくて困っています。）
+・その他の便利機能やツールなどを詰め込んだ、AppHubのサブ要素として、"AppSub"というものも制作しています
+・いくつかのコードを提示します。あなたにwebページやツールなどを作ってもらう際、基本的に以下のコードを参考に、統一されたデザインにしてください。（サイドバーは例外なのでつけないでください）common/common.css→
+body {
+  visibility:hidden;
+  opacity:0;
+  transition:opacity 0.2s ease-in-out;
+}
+
+body.loaded {
+  visibility:visible;
+  opacity:1;
+}
+
+/* ω */
+
+:root{
+  --white:#ffffff;
+  --background:#f1f1f1;
+  --gray:#808080;
+  --gray2:#e0e0e0;
+  --black:#000000;
+  --black2:#333333;
+  --main:#0097a7;
+}
+body{
+  margin:0;
+  font-family:"Noto Sans JP",sans-serif;
+  background:var(--background);
+  color:var(--black2);
+  user-select:none;
+}
+a{
+  color:inherit;
+  text-decoration:none;
+}
+.container{
+  display:flex;
+  height:100vh;
+}
+.logo-text{
+  background: linear-gradient(45deg,var(--main),orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:text;
+  color:transparent;
+}
+.sidebar{
+  width:260px;
+  background:var(--main);
+  color:var(--white);
+  padding:1rem 0.75rem;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.nav-main{
+  margin-top:4rem;
+}
+.nav-main ul,
+.nav-sub ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+}
+.nav-main ul li,
+.nav-sub ul li{
+  margin:0;
+}
+.nav-main ul li a,
+.nav-sub ul li a{
+  display:flex;
+  align-items:center;
+  width:100%;
+  padding:0.75rem 1rem;
+  border-radius:1rem;
+  font-weight:500;
+  color:var(--white);
+  transition:background-color 0.2s,color 0.2s,padding-left 0.2s;
+  box-sizing:border-box;
+}
+.nav-main ul li a{
+  font-size:1.15rem;
+}
+.nav-sub ul li a{
+  font-size:1rem;
+  opacity:0.9;
+}
+.nav-main ul li a:hover,
+.nav-sub ul li a:hover{
+  background-color:var(--white);
+  opacity:0.85;
+  color:var(--main);
+  padding-left:1.2rem;
+}
+.sidebar .material-icons{
+  margin-right:8px;
+  font-size:1.5rem;
+}
+common/common.js→
+document.addEventListener('DOMContentLoaded',function(){
+  if(document.fonts&&document.fonts.ready){
+    document.fonts.ready.then(function(){
+      document.body.classList.add('loaded');
+    });
+  }else{
+    setTimeout(function(){
+      document.body.classList.add('loaded');
+    },100);
+  }
+});
+index.html→
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Home | AppHub</title>
+    <link rel="stylesheet" href="common/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" href="assets/favicon-main.png">
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <nav class="nav-main">
+          <ul>
+            <li><a href="announce.html"><span class="material-icons">campaign</span>連絡</a></li>
+            <li><a href="server.html"><span class="material-icons">dns</span>サーバー</a></li>
+            <li><a href="share.html"><span class="material-icons">upload_file</span>ファイル共有</a></li>
+            <li><a href="chat.html"><span class="material-icons">chat</span>チャット</a></li>
+            <li><a href="call.html"><span class="material-icons">call</span>通話</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-sub">
+          <ul>
+            <li><a href="user.html"><span class="material-icons">account_circle</span>ユーザー</a></li>
+            <li><a href="settings.html"><span class="material-icons">settings</span>設定</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <main>
+        <div class="neta">
+          <img src="assets/school.png"><p>この Webアプリ は ita.ed.jp によって管理されています</p>
+        </div>
+        <div class="cards-wrapper">
+          <div class="cards">
+            <a class="card" href="announce.html">
+              <span class="material-icons">campaign</span>
+              <p>アナウンス</p>
+            </a>
+            <a class="card" href="eagserver.html">
+              <span class="material-icons">dns</span>
+              <p>サーバー</p>
+            </a>
+            <a class="card" href="share.html">
+              <span class="material-icons">upload_file</span>
+              <p>いろいろ共有</p>
+            </a>
+            <a class="card" href="chat.html">
+              <span class="material-icons">chat</span>
+              <p>チャット</p>
+            </a>
+            <a class="card" href="call.html">
+              <span class="material-icons">call</span>
+              <p>通話</p>
+            </a>
+            <div class="card" id="school-mode-toggle" tabindex="0" role="button" aria-pressed="false">
+              <span class="material-icons">school</span>
+              <p>学校モード</p>
+              <div class="school-mode-status" id="school-mode-status"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="common/common.js" defer></script>
+    <script src="js/index.js" defer></script>
+  </body>
+</html>
+css/index.css→
+main{
+  flex:1;
+  padding:2.5rem;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.cards-wrapper{
+  flex-grow:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:0;
+  width:100%;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+  width:960px;
+  max-width:100%;
+}
+.card{
+  position:relative;
+  background:var(--white);
+  padding:2.5rem 1.5rem;
+  border:1px solid var(--white2);
+  border-radius:0.5rem;
+  text-align:center;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+}
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+.card .material-icons{
+  font-size:3rem;
+  color:var(--main);
+  margin-bottom:1rem;
+}
+.card p{
+  margin:0;
+  font-size:1.2rem;
+  color:inherit;
+}
+.school-mode-status{
+  position:absolute;
+  bottom:0.75rem;
+  right:1rem;
+  pointer-events:none;
+}
+.neta {
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+}
+
+.neta img{
+  height:2rem;
+  width:auto;
+  position: relative;
+  top:-0.1rem;
+}
+register.html→
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Register | AppHub</title>
+    <link rel="stylesheet" href="common/common.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" href="assets/favicon-main.png">
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <nav class="nav-main">
+          <ul>
+            <li><a href="announce.html"><span class="material-icons">campaign</span>連絡</a></li>
+            <li><a href="server.html"><span class="material-icons">dns</span>サーバー</a></li>
+            <li><a href="share.html"><span class="material-icons">upload_file</span>ファイル共有</a></li>
+            <li><a href="chat.html"><span class="material-icons">chat</span>チャット</a></li>
+            <li><a href="call.html"><span class="material-icons">call</span>通話</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-sub">
+          <ul>
+            <li><a href="user.html"><span class="material-icons">account_circle</span>ユーザー</a></li>
+            <li><a href="settings.html"><span class="material-icons">settings</span>設定</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <main>
+        <form class="register-form">
+          <h1><span class="logo-text">App</span><img class="logo-img" src="assets/favicon-main.png"><span class="logo-text">Hub</span>&nbsp;の登録</h1>
+          <div class="name-group">
+            <label class="name-field">
+              姓
+              <input type="text" name="sei-name" placeholder="例：春日" required>
+            </label>
+            <label class="name-field">
+              名
+              <input type="text" name="mei-name" placeholder="例：晴人" required>
+            </label>
+          </div>
+          <label>
+            表示名（任意）
+            <input type="text" name="display-name" placeholder="例：Taste" required>
+          </label>
+          <label>
+            <div class="ita-text">
+              ユーザー名（ita.ed.jpドメイン）
+                <span class="tip" id="tip">確認方法</span>
+            </div>
+            <input type="text" name="email-user-name" placeholder="例：207d230116" required>
+          </label>
+          <label>
+            パスワード（8~20字の半角英数記号のみ）
+            <input type="password" name="password" placeholder="例：Shimura2JHS^_^207d23" required>
+          </label>
+          <div class="form-bottom">
+            <p class="register-link">
+              既にアカウントをお持ちの方は <a href="login.html">こちら</a>
+            </p>
+            <button type="submit">登録</button>
+          </div>
+        </form>
+
+
+        <div id="modal-overlay" class="modal-overlay">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>ユーザー名の確認方法</h3>
+              <span class="modal-close" id="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+              <p>ユーザー名は学校から配布されたメールアドレスの@マークより前の部分を入力してください。</p>
+              <p>例：メールアドレスが「207d230116@ita.ed.jp」の場合、「207d230116」を入力します。</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="common/common.js" defer></script>
+    <script src="js/register.js" defer></script>
+  </body>
+</html>
+css/register.css→
+main{
+  flex:1;
+  padding:2.5rem;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.register-form{
+  background:var(--white);
+  border:1px solid var(--gray2);
+  border-radius:0.5rem;
+  padding:2rem;
+  width:50%;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+}
+.register-form h1{
+  display:flex;
+  align-items:center;
+  --font-size:1.5rem;
+  font-size:var(--font-size);
+  font-weight:normal;
+  justify-content:center;
+}
+.register-form h1 img{
+  width:calc(var(--font-size)*4/3);
+}
+.register-form label{
+  font-size:1rem;
+  display:flex;
+  flex-direction:column;
+}
+.register-form input[type="text"],
+.register-form input[type="password"]{
+  padding:0.6rem;
+  border:1px solid var(--gray2);
+  border-radius:0.5rem;
+  font-size:1rem;
+  margin-top:0.25rem;
+}
+
+.register-form button{
+  padding:0.6rem;
+  background:var(--main);
+  color:var(--white);
+  border:none;
+  border-radius:0.5rem;
+  font-size:1rem;
+  cursor:pointer;
+  transition:background-color 0.2s;
+}
+.register-form button:hover{
+  background:#007a85;
+}
+.register-link{
+  text-align:center;
+  font-size:0.9rem;
+}
+.register-link a{
+  color:var(--main);
+  text-decoration:underline;
+}
+.name-group{
+  display:flex;
+  gap:1rem;
+}
+.register-form .name-group .name-field{
+  flex:0 0 calc(50% - 0.5rem);
+  min-width:0;
+}
+
+.form-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:1rem;
+}
+
+
+
+/* モーダル関連 */
+
+.tip{
+  cursor:pointer;
+  color:var(--main);
+  font-size:0.75rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: 0.5rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(0.8);
+  transition: transform 0.3s;
+}
+
+.modal-overlay.show .modal-content {
+  transform: scale(1);
+}
+
+.modal-header {
+  padding: 1.5rem 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--black2);
+  font-size: 1.2rem;
+}
+
+.modal-close {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray);
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--black2);
+}
+
+.modal-body {
+  padding: 1rem 1.5rem 1.5rem;
+  color: var(--black2);
+  line-height: 1.6;
+}

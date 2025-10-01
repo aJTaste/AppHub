@@ -1,0 +1,25 @@
+root{
+  --white1:#ffffff;
+  --white2:#f9f9f9;
+  --white3:#f1f1f1;
+  --gray1:#e0e0e0;
+  --gray2:#bdbdbd;
+  --gray3:#888888;
+  --gray4:#555555;
+  --black1:#333333;
+  --black2:#212121;
+  --black3:#000000;
+  --main:#0097a7;
+}
+↑多分昔の
+
+
+
+
+
+
+
+<span class="logo-text">App</span><img class="logo-img" src="assets/favicon-main.png"><span class="logo-text">Hub</span>
+
+
+https://karaseee.f5.si/
