@@ -1,0 +1,11 @@
+document.addEventListener('DOMContentLoaded',function(){
+  if(document.fonts&&document.fonts.ready){
+    document.fonts.ready.then(function(){
+      document.body.classList.add('loaded');
+    });
+  }else{
+    setTimeout(function(){
+      document.body.classList.add('loaded');
+    },100);
+  }
+});
