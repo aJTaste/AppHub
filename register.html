@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Register | AppHub</title>
+    <link rel="stylesheet" href="common/common.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" href="assets/favicon-main.png">
+    <link rel="apple-touch-icon" href="assets/icon-app.png">
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <nav class="nav-main">
+          <ul>
+            <li><a href="announce.html"><span class="material-icons">campaign</span>連絡</a></li>
+            <li><a href="server.html"><span class="material-icons">dns</span>サーバー</a></li>
+            <li><a href="share.html"><span class="material-icons">upload_file</span>ファイル共有</a></li>
+            <li><a href="chat.html"><span class="material-icons">chat</span>チャット</a></li>
+            <li><a href="call.html"><span class="material-icons">call</span>通話</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-sub">
+          <ul>
+            <li><a href="user.html"><span class="material-icons">account_circle</span>ユーザー</a></li>
+            <li><a href="settings.html"><span class="material-icons">settings</span>設定</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <main>
+        <form class="register-form">
+          <h1><span class="logo-text">App</span><img class="logo-img" src="assets/favicon-main.png"><span class="logo-text">Hub</span>&nbsp;の登録</h1>
+          <div class="name-group">
+            <label class="name-field">
+              姓
+              <input type="text" name="sei-name" placeholder="例：春日" required>
+            </label>
+            <label class="name-field">
+              名
+              <input type="text" name="mei-name" placeholder="例：晴人" required>
+            </label>
+          </div>
+          <label>
+            表示名（任意）
+            <input type="text" name="display-name" placeholder="例：Taste" required>
+          </label>
+          <label>
+            <div class="ita-text">
+              ユーザー名（ita.ed.jpドメイン）
+                <span class="tip" id="tip">確認方法</span>
+            </div>
+            <input type="text" name="email-user-name" placeholder="例：207d230116" required>
+          </label>
+          <label>
+            パスワード（8~20字の半角英数記号のみ）
+            <input type="password" name="password" placeholder="例：Shimura2JHS^_^207d23" required>
+          </label>
+          <div class="form-bottom">
+            <p class="register-link">
+              既にアカウントをお持ちの方は <a href="login.html">こちら</a>
+            </p>
+            <button type="submit">登録</button>
+          </div>
+        </form>
+
+
+        <div id="modal-overlay" class="modal-overlay">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>ユーザー名の確認方法</h3>
+              <span class="modal-close" id="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+              <p>ユーザー名は学校から配布されたメールアドレスの@マークより前の部分を入力してください。</p>
+              <p>例：メールアドレスが「207d230116@ita.ed.jp」の場合、「207d230116」を入力します。</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="common/common.js" defer></script>
+    <script src="js/register.js" defer></script>
+  </body>
+</html>
